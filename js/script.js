@@ -51,29 +51,32 @@ var studenti = [
 
 for (var chiave in studenti) {
   console.log(studenti[chiave].nome + " " + studenti[chiave].cognome);
-}
+} // invoco la funzione con i 3 prompt // studenti.push({ nome, cognome, eta }); // pusho dentro l'array studenti (precedentemente creato) i nuovi dati (oggetto)
 
 // - Dare la possibilità all’utente attraverso 3 prompt di aggiungere un nuovo oggetto studente inserendo nell’ordine: nome, cognome e età.
 
-askStudent(); // invoco la funzione con i 3 prompt
-
-console.log(studenti);
+askStudent();
+console.log(studenti); //output di studenti dopo l'aggiunta
 
 /* ================================ FUNZIONI GENERALI ================================================================ */
 
-//funzione che chiede dati studente da inserire
+//funzione che chiede dati studente da inserire con casi limite
 
 function askStudent() {
-  var nome;
-  var cognome;
-
   nome = prompt("Nome studente");
-  cognome = prompt("Cognome studente");
-  var eta;
-  // controllo e loop finchè età non è valida
-  while (eta < 18 || eta > 50 || isNaN(eta)) {
-    eta = parseInt(prompt("Età studente"));
-    alert("Età non valida, riprova");
+  while (nome === "" || !isNaN(nome)) {
+    alert("Nome non valido");
+    nome = prompt("Nome studente");
   }
-  studenti.push({ nome, cognome, eta }); // pusho dentro l'array studenti (precedentemente creato) i nuovi dati (oggetto)
+  cognome = prompt("Cognome studente");
+  while (cognome === "" || !isNaN(cognome)) {
+    alert("Cognome non valido, riprova");
+    cognome = prompt("Cognome studente");
+  }
+  eta = parseInt(prompt("Età studente"));
+  while (eta < 18 || eta > 50 || isNaN(eta)) {
+    alert("Eta non valida");
+    eta = parseInt(prompt("Età studente"));
+  }
+  studenti.push({ nome, cognome, eta });
 }
